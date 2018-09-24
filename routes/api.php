@@ -30,4 +30,7 @@ Route::middleware('auth:api')->group(function(){
   Route::resource('studentDetail', 'StudentDetailController');
   Route::resource('studentScore', 'StudentScoreController');
 
+  // Schoolarship
+  Route::resource('schoolarship', 'SchoolarshipController');
+
 });

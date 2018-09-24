@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Schoolarship;
 use Illuminate\Http\Request;
-
+use Storage;
 class SchoolarshipController extends Controller
 {
     /**
@@ -14,7 +14,8 @@ class SchoolarshipController extends Controller
      */
     public function index()
     {
-        //
+        $schoolarship = Schoolarship::all();
+        return response()->json(['data' => $schoolarship]);
     }
 
     /**
@@ -35,7 +36,12 @@ class SchoolarshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $photo = ($request->photo) ? Storage::disk('public')->put('schoolarship', $request->photo) : '' ;
+        $input = $request->all();
+        $input['photo'] = $photo;
+        $schoolarship = Schoolarship::create($input);
+
+        return response()->json(['data' => $schoolarship]);
     }
 
     /**
@@ -46,7 +52,7 @@ class SchoolarshipController extends Controller
      */
     public function show(Schoolarship $schoolarship)
     {
-        //
+        return response()->json(['data' => $schoolarship]);
     }
 
     /**
@@ -69,7 +75,12 @@ class SchoolarshipController extends Controller
      */
     public function update(Request $request, Schoolarship $schoolarship)
     {
-        //
+        $photo = ($request->photo) ? Storage::disk('public')->put('schoolarship', $request->photo) : $schoolarship->photo ;
+        $input = $request->all();
+        $input['photo'] = $photo;
+        $schoolarship->update($input);
+
+        return response()->json(['data' => $input]);
     }
 
     /**
@@ -80,6 +91,7 @@ class SchoolarshipController extends Controller
      */
     public function destroy(Schoolarship $schoolarship)
     {
-        //
+        $schoolarship->delete();
+        return response()->json(['data' => $schoolarship]);
     }
 }
