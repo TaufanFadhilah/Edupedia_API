@@ -35,7 +35,8 @@ class StudentDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $studentDetail = StudentDetail::create($request->all());
+        return response()->json(['data' => $studentDetail]);
     }
 
     /**
@@ -46,7 +47,7 @@ class StudentDetailController extends Controller
      */
     public function show(StudentDetail $studentDetail)
     {
-        //
+        return response()->json(['data' => $studentDetail]);
     }
 
     /**
@@ -69,7 +70,8 @@ class StudentDetailController extends Controller
      */
     public function update(Request $request, StudentDetail $studentDetail)
     {
-        //
+        $studentDetail->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -80,6 +82,7 @@ class StudentDetailController extends Controller
      */
     public function destroy(StudentDetail $studentDetail)
     {
-        //
+        $studentDetail->delete();
+        return response()->json(['data' => $studentDetail]);
     }
 }

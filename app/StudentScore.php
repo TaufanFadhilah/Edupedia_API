@@ -11,5 +11,5 @@ class StudentScore extends Model
     'math_1', 'math_2', 'math_3', 'math_4',
     'major_1', 'major_2', 'major_3', 'major_4',
     'certificate'
-  ]
+  ];
 }

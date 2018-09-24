@@ -35,7 +35,8 @@ class UniversityAchievementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $universityAchievement = UniversityAchievement::create($request->all());
+        return response()->json(['data' => $universityAchievement]);
     }
 
     /**
@@ -44,9 +45,9 @@ class UniversityAchievementController extends Controller
      * @param  \App\UniversityAchievement  $universityAchievement
      * @return \Illuminate\Http\Response
      */
-    public function show(UniversityAchievement $universityAchievement)
+    public function show(UniversityAchievement $universityachievement)
     {
-        //
+        return response()->json(['data' => $universityachievement]);
     }
 
     /**
@@ -69,7 +70,8 @@ class UniversityAchievementController extends Controller
      */
     public function update(Request $request, UniversityAchievement $universityAchievement)
     {
-        //
+        $universityAchievement->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -78,8 +80,9 @@ class UniversityAchievementController extends Controller
      * @param  \App\UniversityAchievement  $universityAchievement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UniversityAchievement $universityAchievement)
+    public function destroy(UniversityAchievement $universityachievement)
     {
-        //
+        $universityachievement->delete();
+        return response()->json(['data' => $universityachievement]);
     }
 }

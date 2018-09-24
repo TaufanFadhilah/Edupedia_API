@@ -14,7 +14,8 @@ class UniversityController extends Controller
      */
     public function index()
     {
-        //
+        $university = University::with(['Achievement', 'Faculty', 'Faculty.Majors'])->get();
+        return response()->json(['data' => $university]);
     }
 
     /**
@@ -35,7 +36,8 @@ class UniversityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $university = University::create($request->all());
+        return response()->json(['data' => $university]);
     }
 
     /**
@@ -46,7 +48,7 @@ class UniversityController extends Controller
      */
     public function show(University $university)
     {
-        //
+        return response()->json(['data' => $university->with('Achievement')->first()]);
     }
 
     /**
@@ -69,7 +71,8 @@ class UniversityController extends Controller
      */
     public function update(Request $request, University $university)
     {
-        //
+        $university->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -80,6 +83,7 @@ class UniversityController extends Controller
      */
     public function destroy(University $university)
     {
-        //
+        $university->delete();
+        return response()->json(['data' => $university]);
     }
 }

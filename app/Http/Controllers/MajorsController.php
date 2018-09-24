@@ -14,7 +14,8 @@ class MajorsController extends Controller
      */
     public function index()
     {
-        //
+        $majors = Majors::all();
+        return response()->json(['data' => $majors]);
     }
 
     /**
@@ -35,7 +36,8 @@ class MajorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $majors = Majors::create($request->all());
+        return response()->json(['data' => $majors]);
     }
 
     /**
@@ -44,9 +46,9 @@ class MajorsController extends Controller
      * @param  \App\Majors  $majors
      * @return \Illuminate\Http\Response
      */
-    public function show(Majors $majors)
+    public function show(Majors $major)
     {
-        //
+        return response()->json(['data' => $major]);
     }
 
     /**
@@ -67,9 +69,10 @@ class MajorsController extends Controller
      * @param  \App\Majors  $majors
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Majors $majors)
+    public function update(Request $request, Majors $major)
     {
-        //
+        $major->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -78,8 +81,9 @@ class MajorsController extends Controller
      * @param  \App\Majors  $majors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Majors $majors)
+    public function destroy(Majors $major)
     {
-        //
+        $major->delete();
+        return response()->json(['data' => $major]);
     }
 }

@@ -19,4 +19,15 @@ Route::post('register', 'UserController@register');
 Route::middleware('auth:api')->group(function(){
   // User
   Route::get('profile', 'UserController@details');
+
+  // University
+  Route::resource('university', 'UniversityController');
+  Route::resource('universityachievement', 'UniversityAchievementController');
+  Route::resource('faculty', 'FacultyController');
+  Route::resource('majors', 'MajorsController');
+
+  // Student Detail
+  Route::resource('studentDetail', 'StudentDetailController');
+  Route::resource('studentScore', 'StudentScoreController');
+
 });

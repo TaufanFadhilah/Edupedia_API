@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Storage;
 
 class UserController extends Controller
 {
@@ -34,9 +35,10 @@ class UserController extends Controller
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors()], 401);
       }
-
+      $avatar = Storage::disk('public')->put('avatars', $request->avatar);
       $input = $request->all();
       $input['password'] = bcrypt($input['password']);
+      $input['avatar'] = $avatar;
       $user = User::create($input);
       $success['token'] =  $user->createToken('nApp')->accessToken;
       $success['name'] =  $user->name;

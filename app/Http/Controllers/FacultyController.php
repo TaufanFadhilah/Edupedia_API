@@ -35,7 +35,8 @@ class FacultyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faculty = Faculty::create($request->all());
+        return response()->json(['data' => $faculty]);
     }
 
     /**
@@ -46,7 +47,7 @@ class FacultyController extends Controller
      */
     public function show(Faculty $faculty)
     {
-        //
+        return response()->json(['data' => $faculty]);
     }
 
     /**
@@ -69,7 +70,8 @@ class FacultyController extends Controller
      */
     public function update(Request $request, Faculty $faculty)
     {
-        //
+        $faculty->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -80,6 +82,7 @@ class FacultyController extends Controller
      */
     public function destroy(Faculty $faculty)
     {
-        //
+        $faculty->delete();
+        return response()->json(['data' => $faculty]);
     }
 }
