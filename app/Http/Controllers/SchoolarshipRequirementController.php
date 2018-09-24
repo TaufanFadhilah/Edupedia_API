@@ -35,7 +35,8 @@ class SchoolarshipRequirementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $schoolarshipRequirement = SchoolarshipRequirement::create($request->all());
+        return response()->json(['data' => $schoolarshipRequirement]);
     }
 
     /**
@@ -46,7 +47,7 @@ class SchoolarshipRequirementController extends Controller
      */
     public function show(SchoolarshipRequirement $schoolarshipRequirement)
     {
-        //
+        return response()->json(['data' => $schoolarshipRequirement]);
     }
 
     /**
@@ -69,7 +70,8 @@ class SchoolarshipRequirementController extends Controller
      */
     public function update(Request $request, SchoolarshipRequirement $schoolarshipRequirement)
     {
-        //
+        $schoolarshipRequirement->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -80,6 +82,7 @@ class SchoolarshipRequirementController extends Controller
      */
     public function destroy(SchoolarshipRequirement $schoolarshipRequirement)
     {
-        //
+        $schoolarshipRequirement->delete();
+        return response()->json(['data' => $schoolarshipRequirement]);
     }
 }

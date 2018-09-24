@@ -32,5 +32,7 @@ Route::middleware('auth:api')->group(function(){
 
   // Schoolarship
   Route::resource('schoolarship', 'SchoolarshipController');
+  Route::resource('schoolarshipRequirement', 'SchoolarshipRequirementController');
+  Route::resource('participant', 'ParticipantController');
 
 });

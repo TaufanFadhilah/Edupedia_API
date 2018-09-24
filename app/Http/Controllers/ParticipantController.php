@@ -35,7 +35,8 @@ class ParticipantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $participant = Participant::create($request->all());
+        return response()->json(['data' => $participant]);
     }
 
     /**
@@ -46,7 +47,7 @@ class ParticipantController extends Controller
      */
     public function show(Participant $participant)
     {
-        //
+        return response()->json(['data' => $participant]);
     }
 
     /**
@@ -69,7 +70,8 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, Participant $participant)
     {
-        //
+        $participant->update($request->all());
+        return response()->json(['data' => $request->all()]);
     }
 
     /**
@@ -80,6 +82,7 @@ class ParticipantController extends Controller
      */
     public function destroy(Participant $participant)
     {
-        //
+        $participant->delete();
+        return response()->json(['data' => $participant]);
     }
 }
